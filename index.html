@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Coberturas Electricidad</title>
+<meta name="theme-color" content="#E8112D">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Electricidad">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Electricidad">
+<meta name="description" content="Guía de coberturas de electricidad para reparadores colaboradores">
+
+<!-- ═══ Open Graph — previews en WhatsApp, Telegram, Twitter, etc. ═══ -->
+<meta property="og:title" content="Coberturas Electricidad">
+<meta property="og:description" content="Guía de coberturas de electricidad para reparadores colaboradores">
+<meta property="og:image" content="./og-image-wide.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="./og-image-wide.png">
+
+<!-- ═══ Favicon pestaña navegador ═══ -->
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./icons/icon-16.png">
+<link rel="icon" type="image/png" sizes="48x48" href="./icons/icon-48.png">
+
+<!-- ═══ PWA / iOS / Android ═══ -->
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="167x167" href="./icons/icon-167.png">
+<link rel="apple-touch-icon" sizes="152x152" href="./icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="./icons/icon-120.png">
+<meta name="msapplication-TileImage" content="./icons/icon-144.png">
+<meta name="msapplication-TileColor" content="#E8112D">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:#E8112D; --red-dark:#B50021;
+  --green:#1B7A45; --green-bg:#F0FAF4; --green-border:#A8DFC0;
+  --red-bg:#FFF0F2; --red-border:#FFAAB5;
+  --blue:#1565C0; --blue-bg:#EEF4FF; --blue-border:#BAD0F5;
+  --grey:#607080; --grey-bg:#F4F6F8; --grey-border:#C8D4DC;
+  --yellow-bg:#FFFBEA; --yellow-border:#F5C842; --yellow-text:#7A5800;
+  --white:#FFFFFF; --body-bg:#F8F9FB; --text:#1A2330; --text-light:#4A5568;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Nunito Sans',sans-serif;background:var(--body-bg);color:var(--text);min-height:100vh;max-width:480px;margin:0 auto;overflow-x:hidden;}
+
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn 0.2s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
+
+/* HOME */
+.home-wrap{padding:18px 10px 28px;}
+.home-title-card{background:#fff;border:1.5px solid var(--red);border-left:4px solid var(--red);border-radius:14px;padding:22px 20px 18px;box-shadow:-4px 4px 0 rgba(232,17,45,0.14),0 1px 8px rgba(0,0,0,0.05);margin:0 -4px 18px;text-align:center;}
+.home-title-card h1{font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;color:var(--red);letter-spacing:-0.4px;line-height:1.15;}
+.home-title-card p{font-size:15px;color:var(--text-light);margin-top:5px;font-weight:600;}
+
+.menu-label{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--grey);text-transform:uppercase;letter-spacing:1px;margin-bottom:11px;}
+.menu-grid-4{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.menu-card{background:var(--white);border-radius:14px;padding:18px 10px 14px;cursor:pointer;transition:all 0.18s;text-align:center;overflow:hidden;}
+.menu-card:active{transform:scale(0.955);}
+.card-green{background:#F4FAF8;border:1px solid #86C8A0;border-left:3px solid #1B7A45;}
+.card-green .menu-card-title{color:#1B7A45;}
+.card-blue{background:#F5F9FF;border:1px solid #90B8E8;border-left:3px solid #1565C0;}
+.card-blue .menu-card-title{color:#1565C0;}
+.card-grey{background:#F4F6F8;border:1px solid #C8D4DC;border-left:3px solid #607080;}
+.card-grey .menu-card-title{color:#607080;}
+.card-red{background:#FFF0F2;border:1px solid #FFAAB5;border-left:3px solid var(--red);}
+.card-red .menu-card-title{color:var(--red);}
+.card-amber{background:#FFFCF0;border:1px solid #E8C840;border-left:3px solid #F57F17;}
+.card-amber .menu-card-title{color:#F57F17;}
+.menu-card-icon{display:flex;justify-content:center;margin-bottom:10px;}
+.menu-card-title{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;line-height:1.3;}
+
+/* AVISO */
+.aviso-card{margin-top:18px;background:var(--yellow-bg);border:1.5px solid var(--yellow-border);border-left:4px solid var(--yellow-border);border-radius:14px;padding:13px 15px;display:flex;gap:11px;align-items:flex-start;box-shadow:-4px 4px 0 rgba(245,200,66,0.20);}
+.aviso-icon{font-size:20px;flex-shrink:0;margin-top:1px;}
+.aviso-text{font-size:13px;color:var(--yellow-text);line-height:1.55;font-weight:600;}
+.aviso-text strong{display:block;font-size:13px;font-weight:800;margin-bottom:3px;letter-spacing:0.3px;}
+.aviso-text em{display:block;margin-top:5px;font-style:normal;font-weight:700;opacity:0.72;font-size:12px;}
+
+/* PAGE */
+.page-content{padding:14px 10px 36px;}
+.page-title-card{background:#fff;border:1.5px solid var(--red);border-left:4px solid var(--red);border-radius:14px;padding:14px 16px 13px;margin:0 -2px 14px;display:flex;align-items:center;gap:12px;box-shadow:-4px 4px 0 rgba(232,17,45,0.14),0 1px 8px rgba(0,0,0,0.05);}
+.page-title-card h1{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:var(--red);line-height:1.2;}
+.page-title-card p{font-size:14px;color:var(--text-light);margin-top:3px;}
+.ptc-icon{flex-shrink:0;}
+
+.ptc-back{width:34px;height:34px;border:1.5px solid rgba(232,17,45,0.25);border-left:3px solid var(--red);background:#FFF4F5;cursor:pointer;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.16s;box-shadow:-3px 3px 0 rgba(232,17,45,0.14);}
+.ptc-back:active{transform:scale(0.91);}
+.ptc-back svg{width:18px;height:18px;fill:none;stroke:var(--red);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+
+/* SECTION CARDS */
+.section-card{border-radius:14px;margin-bottom:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.08);}
+.sc-header{padding:13px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;}
+.sc-header h2{font-family:'Nunito',sans-serif;font-size:17px;font-weight:800;flex:1;line-height:1.3;}
+.chevron{font-size:13px;opacity:0.75;transition:transform 0.22s;flex-shrink:0;}
+.section-card.open .chevron{transform:rotate(180deg);}
+.sc-body{display:none;padding:14px 16px;}
+.section-card.open .sc-body{display:block;}
+
+.card-cobertura{background:var(--green-bg);border:2px solid var(--green-border);}
+.card-cobertura .sc-header{background:var(--green);}
+.card-cobertura .sc-header h2,.card-cobertura .chevron{color:#fff;}
+.card-exclusion{background:var(--red-bg);border:2px solid var(--red-border);}
+.card-exclusion .sc-header{background:var(--red);}
+.card-exclusion .sc-header h2,.card-exclusion .chevron{color:#fff;}
+.card-info{background:var(--blue-bg);border:2px solid var(--blue-border);}
+.card-info .sc-header{background:var(--blue);}
+.card-info .sc-header h2,.card-info .chevron{color:#fff;}
+.card-neutral{background:var(--grey-bg);border:2px solid var(--grey-border);}
+.card-neutral .sc-header{background:#607080;}
+.card-neutral .sc-header h2,.card-neutral .chevron{color:#fff;}
+.card-red-sec{background:#FFF0F2;border:2px solid #FFAAB5;}
+.card-red-sec .sc-header{background:var(--red);}
+.card-red-sec .sc-header h2,.card-red-sec .chevron{color:#fff;}
+
+/* LISTS */
+.item-list{list-style:none;}
+.item-list li{padding:9px 0;border-bottom:1px solid rgba(0,0,0,0.07);font-size:15.5px;line-height:1.65;color:var(--text);display:flex;gap:9px;align-items:flex-start;}
+.item-list li:last-child{border-bottom:none;}
+.li-icon{flex-shrink:0;font-size:16px;margin-top:1px;}
+.sub-list{list-style:none;margin-top:8px;padding-left:4px;}
+.sub-list li{padding:5px 0;display:flex;gap:8px;align-items:flex-start;font-size:15px;border-bottom:none;}
+.sub-arrow{color:#1B7A45;font-weight:700;flex-shrink:0;}
+
+/* BOXES */
+.warn-box{background:#FFF8E1;border:1.5px solid #FFD54F;border-radius:12px;padding:11px 13px;margin-bottom:12px;font-size:15.5px;color:#5D4037;line-height:1.6;display:flex;gap:9px;align-items:flex-start;}
+.info-box{background:#EBF5FB;border:1.5px solid #85C1E9;border-radius:12px;padding:11px 13px;margin-bottom:12px;font-size:15.5px;color:#154360;line-height:1.6;display:flex;gap:9px;align-items:flex-start;}
+.green-box{background:var(--green-bg);border:1.5px solid var(--green-border);border-radius:12px;padding:11px 13px;margin-bottom:12px;font-size:15.5px;color:#14532D;line-height:1.6;display:flex;gap:9px;align-items:flex-start;}
+.wi{font-size:19px;flex-shrink:0;}
+
+/* STEP CARDS */
+.step-card{background:#fff;border-radius:12px;padding:13px 14px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 1px 5px rgba(0,0,0,0.07);}
+.step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:12px;font-weight:900;flex-shrink:0;color:#fff;}
+.step-num.green{background:var(--green);}
+.step-num.blue{background:var(--blue);}
+.step-num.red{background:var(--red);}
+.step-content h3{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;margin-bottom:3px;}
+.step-content p{font-size:15.5px;color:var(--text-light);line-height:1.6;}
+
+/* POLIZA ITEMS */
+.poliza-item{background:#fff;border-radius:12px;padding:13px 14px;margin-bottom:10px;border-left:5px solid var(--green);box-shadow:0 1px 5px rgba(0,0,0,0.07);}
+.poliza-item.info{border-left-color:var(--blue);}
+.poliza-item.red{border-left-color:var(--red);}
+.poliza-item h3{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;margin-bottom:5px;}
+.poliza-item p{font-size:15.5px;color:var(--text-light);line-height:1.6;}
+
+/* RED NOTICE */
+.red-notice{background:#fff;border:1.5px solid var(--red);border-left:4px solid var(--red);border-radius:14px;padding:13px 15px;display:flex;gap:11px;align-items:flex-start;box-shadow:-4px 4px 0 rgba(232,17,45,0.14);margin-top:14px;}
+.red-notice-text{font-size:15px;color:var(--text);line-height:1.6;font-weight:600;}
+.red-notice-text strong{color:var(--red);}
+
+/* SUBSECTION LABEL */
+.subsec-label{font-family:'Nunito',sans-serif;font-size:12.5px;font-weight:800;color:var(--grey);text-transform:uppercase;letter-spacing:1px;margin:14px 0 8px;padding-left:2px;}
+
+::-webkit-scrollbar{display:none;}
+*{scrollbar-width:none;}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div class="screen active" id="screen-home">
+  <div class="home-wrap">
+
+    <div class="home-title-card">
+      <h1>Coberturas Electricidad</h1>
+      <p>Guía para reparadores colaboradores</p>
+    </div>
+
+    <div class="menu-label">Selecciona una cobertura</div>
+
+    <div class="menu-grid-4">
+      <div class="menu-card card-blue" onclick="goTo('screen-danios')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1">⚡</span></div>
+        <div class="menu-card-title">Daños Eléctricos</div>
+      </div>
+      <div class="menu-card card-blue" onclick="goTo('screen-aparatos')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1">🔌</span></div>
+        <div class="menu-card-title">Aparatos Eléctricos o Motores</div>
+      </div>
+      <div class="menu-card card-green" onclick="goTo('screen-bricolaje')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1">🛠️</span></div>
+        <div class="menu-card-title">Bricolaje del Hogar</div>
+      </div>
+      <div class="menu-card card-green" onclick="goTo('screen-bricomercio')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1">🏪</span></div>
+        <div class="menu-card-title">Bricomercio</div>
+      </div>
+      <div class="menu-card card-green" onclick="goTo('screen-iberdrola')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1">💡</span></div>
+        <div class="menu-card-title">Bricolaje Eléctrico Iberdrola</div>
+      </div>
+      <div class="menu-card card-red" onclick="goTo('screen-asistencia')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1">🚨</span></div>
+        <div class="menu-card-title">Asistencia Urgente</div>
+      </div>
+      <div class="menu-card card-grey" onclick="goTo('screen-todoriesgo')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1">🛡️</span></div>
+        <div class="menu-card-title">Todo Riesgo Accidental</div>
+      </div>
+      <div class="menu-card card-amber" onclick="goTo('screen-tarifa')">
+        <div class="menu-card-icon"><span style="font-size:36px;line-height:1">📝</span></div>
+        <div class="menu-card-title">Aplicación de la Tarifa</div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;margin-top:18px;margin-bottom:10px;">
+      <button onclick="document.getElementById('info-modal').style.display='flex'"
+        style="background:#1A2330;color:#fff;border:none;border-radius:20px;padding:6px 18px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:0.3px;box-shadow:0 2px 8px rgba(0,0,0,0.18);">
+        Info
+      </button>
+    </div>
+
+    <div class="aviso-card">
+      <span class="aviso-icon">⚠️</span>
+      <div class="aviso-text">
+        <strong>AVISO LEGAL</strong>
+        Herramienta de consulta con fines informativos, de uso exclusivo para reparadores colaboradores. No recoge datos ni interactúa con sistemas corporativos. No sustituye los canales o herramientas oficiales. De uso voluntario.
+        <em>Ante cualquier duda, consulta siempre con el departamento técnico.</em>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL INFO -->
+<div id="info-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:999;align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#fff;border-radius:18px;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,0.22);overflow:hidden;">
+    <div style="background:#E8112D;padding:16px 20px 14px;display:flex;align-items:center;justify-content:space-between;">
+      <span style="font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:#fff;">📱 Instalar la app</span>
+      <button onclick="document.getElementById('info-modal').style.display='none'"
+        style="background:rgba(255,255,255,0.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div style="padding:18px 20px 20px;">
+      <div style="margin-bottom:14px;display:flex;gap:13px;align-items:flex-start;">
+        <span style="font-size:22px;flex-shrink:0;">🤖</span>
+        <div><div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#1A2330;margin-bottom:3px;">Android (Chrome)</div>
+        <div style="font-size:13px;color:#4A5568;line-height:1.5;">Abre la URL → menú ⋮ → <em>"Añadir a pantalla de inicio"</em></div></div>
+      </div>
+      <div style="margin-bottom:14px;display:flex;gap:13px;align-items:flex-start;">
+        <svg width="22" height="22" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;margin-top:2px"><defs><linearGradient id="appleGrad" x1="30" y1="10" x2="70" y2="95" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#E0E0E0"/><stop offset="50%" stop-color="#A8A8A8"/><stop offset="100%" stop-color="#C8C8C8"/></linearGradient></defs><!-- leaf --><path d="M52 18 C52 18 56 8 65 10 C65 10 62 20 52 18Z" fill="#B0B0B0"/><path d="M52 18 C52 18 48 9 40 12 C40 12 44 21 52 18Z" fill="#C0C0C0"/><!-- apple body --><path d="M50 24 C36 24 22 36 22 54 C22 72 34 90 48 90 C51 90 53 88 56 88 C59 88 61 90 64 90 C78 90 78 72 78 54 C78 36 64 24 50 24Z" fill="url(#appleGrad)"/><!-- shine --><path d="M36 34 C36 34 30 42 31 52" stroke="white" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/></svg>
+        <div><div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#1A2330;margin-bottom:3px;">iOS (Safari)</div>
+        <div style="font-size:13px;color:#4A5568;line-height:1.5;">Abre la URL → botón compartir □↑ → <em>"Añadir a pantalla de inicio"</em></div></div>
+      </div>
+      <div style="display:flex;gap:13px;align-items:flex-start;">
+        <span style="font-size:22px;flex-shrink:0;">🖥️</span>
+        <div><div style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:#1A2330;margin-bottom:3px;">PC (Chrome / Edge)</div>
+        <div style="font-size:13px;color:#4A5568;line-height:1.5;">Abre la URL → icono ⊕ en la barra de direcciones → <em>"Instalar"</em></div></div>
+      </div>
+      <div style="margin-top:16px;padding-top:13px;border-top:1px solid #E8ECEF;font-size:13px;color:#607080;text-align:center;font-style:italic;">
+        💡 La app funciona sin conexión después de la primera carga
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- DAÑOS ELÉCTRICOS -->
+<div class="screen" id="screen-danios">
+  <div class="page-content">
+    <div class="page-title-card">
+      <button class="ptc-back" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="ptc-icon"><span style="font-size:32px;line-height:1">⚡</span></div>
+      <div><h1>Daños Eléctricos</h1><p>Cobertura de daños por corrientes anormales</p></div>
+    </div>
+
+    <div class="warn-box">
+      <span class="wi">🔍</span>
+      <div>Verifica si el daño es compatible con lo indicado en el apartado <strong>"trabajo a realizar"</strong> y valora la cobertura con tus criterios profesionales. Debe tratarse de un hecho <strong>accidental, aislado, imprevisto e involuntario</strong>.</div>
+    </div>
+
+    <div class="section-card card-cobertura open" id="sc-dan-1">
+      <div class="sc-header" onclick="toggleCard('sc-dan-1')">
+        <span style="font-size:17px">⚡</span><h2>¿Qué incluye el servicio?</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <ul class="item-list">
+          <li><span class="li-icon">✅</span><span>Los daños originados a la <strong>instalación eléctrica de la vivienda o aparatos conectados</strong> a la misma por corrientes anormales o cortocircuitos en la red.</span></li>
+        </ul>
+        <div class="subsec-label">Si se debe a corriente anormal (subida de tensión)</div>
+        <div class="step-card">
+          <div class="step-num red">1</div>
+          <div class="step-content"><h3>Fotografía del cuadro eléctrico</h3><p>Fotografía del cuadro eléctrico con la tapa abierta.</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num red">2</div>
+          <div class="step-content"><h3>Informe de exclusión</h3><p>Informe de exclusión + marca, modelo y antigüedad de los aparatos dañados.</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num red">3</div>
+          <div class="step-content"><h3>Causante distinto del asegurado</h3><p>Respondemos <strong>Sí</strong> a la pregunta: ¿Existen causantes distintos del asegurado? → datos compañía comercializadora.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card card-exclusion" id="sc-dan-2">
+      <div class="sc-header" onclick="toggleCard('sc-dan-2')">
+        <span style="font-size:17px">🚫</span><h2>No se cubre</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>Defecto de instalación o funcionamiento.</span></li>
+          <li><span class="li-icon">❌</span><span>Falta de mantenimiento o deterioro.</span></li>
+          <li><span class="li-icon">❌</span><span>Averías propias o cortocircuito de los aparatos eléctricos.</span></li>
+          <li><span class="li-icon">❌</span><span>Averías en mecanismos eléctricos por uso o desgaste.</span></li>
+          <li><span class="li-icon">❌</span><span>Cambio completo o parcial de instalaciones eléctricas por ser antiguas u obsoletas.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-card card-neutral" id="sc-dan-3">
+      <div class="sc-header" onclick="toggleCard('sc-dan-3')">
+        <span style="font-size:17px">⚠️</span><h2>Importante — Sin luz / diferencial</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <div class="warn-box"><span class="wi">🚨</span><div>Si en un domicilio no puedes dar luz porque salta el diferencial, <strong>NO PUENTEES LA INSTALACIÓN</strong>.</div></div>
+        <ul class="item-list">
+          <li><span class="li-icon">🔎</span><span>Comprueba si la derivación está en algún mecanismo, electrodoméstico o aparato conectado a la red y desconéctalo.</span></li>
+          <li><span class="li-icon">💧</span><span>Si es fuga de corriente por haberse mojado por avería de agua, habrá que esperar que seque. Desconecta alguna línea si fuera necesario.</span></li>
+          <li><span class="li-icon">🔦</span><span>En caso de quedar parte de la vivienda sin servicio de luz, intentaremos dejar una instalación provisional vista.</span></li>
+        </ul>
+        <div class="info-box" style="margin-top:10px;"><span class="wi">💡</span><div>Comprobar si el hecho excluido puede tener cabida por otro servicio contratado. Por ejemplo, el Bricolaje del Hogar: mano de obra para sustitución de enchufes.</div></div>
+      </div>
+    </div>
+
+    <div class="red-notice">
+      <span style="font-size:19px;flex-shrink:0">🧰</span>
+      <div class="red-notice-text">Si el expediente no tiene cobertura o solicitan alguna mejora, <strong>ofrece Asistencia</strong>. Si el cliente la acepta, solicítalo desde <strong>Appcol por IPS</strong>. El servicio lo paga el cliente.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- APARATOS ELÉCTRICOS O MOTORES -->
+<div class="screen" id="screen-aparatos">
+  <div class="page-content">
+    <div class="page-title-card">
+      <button class="ptc-back" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="ptc-icon"><span style="font-size:32px;line-height:1">🔌</span></div>
+      <div><h1>Aparatos Eléctricos o Motores</h1><p>Valoración y cobertura de aparatos dañados</p></div>
+    </div>
+
+    <div class="section-card card-cobertura open" id="sc-apa-1">
+      <div class="sc-header" onclick="toggleCard('sc-apa-1')">
+        <span style="font-size:17px">🔌</span><h2>¿Qué incluye el servicio?</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <div class="info-box"><span class="wi">📋</span><div>Cualquier aparato eléctrico o motor dañado se <strong>depreciará</strong> cuando tiene una antigüedad superior al 75% de su vida útil.</div></div>
+        <div class="subsec-label">Proceso de valoración</div>
+        <div class="step-card">
+          <div class="step-num blue">1</div>
+          <div class="step-content"><h3>Verifica si la reparación es antieconómica</h3><p>Informar a la compañía de: importe de la reparación, antigüedad del aparato (fecha de fabricación, no de compra) y valor del aparato a nuevo P.V.P. (IVA incluido).</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num blue">2</div>
+          <div class="step-content"><h3>Calcula el valor límite</h3><p>Con los datos de valor a nuevo y vida consumida, se calcula el <strong>valor límite de reparación</strong> del aparato.</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num blue">3</div>
+          <div class="step-content"><h3>Decisión según coste</h3>
+            <p>Si el coste de reparación (IVA incl.) es <strong>menor al valor límite</strong>: se puede reparar o sustituir el aparato.</p>
+            <p style="margin-top:6px;">Si el coste es <strong>mayor</strong>:</p>
+            <ul class="sub-list">
+              <li><span class="sub-arrow">→</span><span>Reparar o sustituir hasta el importe del valor límite y que el cliente pague la diferencia por Asistencia.</span></li>
+              <li><span class="sub-arrow">→</span><span>Proponer una indemnización por el valor límite de reparación.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- BRICOLAJE DEL HOGAR -->
+<div class="screen" id="screen-bricolaje">
+  <div class="page-content">
+    <div class="page-title-card" style="border-color:#1B7A45;border-left-color:#1B7A45;box-shadow:-4px 4px 0 rgba(27,122,69,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(27,122,69,0.25);border-left-color:#1B7A45;background:#F0FAF4;box-shadow:-3px 3px 0 rgba(27,122,69,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#1B7A45"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon"><span style="font-size:32px;line-height:1">🛠️</span></div>
+      <div><h1 style="color:#1B7A45">Bricolaje del Hogar</h1><p>Trabajos eléctricos de bricolaje</p></div>
+    </div>
+
+    <div class="section-card card-neutral" id="sc-bri-0">
+      <div class="sc-header" onclick="toggleCard('sc-bri-0')">
+        <span style="font-size:17px">ℹ️</span><h2>¿Qué es Bricolaje del Hogar?</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <div class="step-card">
+          <div class="step-num blue">📋</div>
+          <div class="step-content"><h3>¿En qué consiste?</h3><p>Servicio para realizar pequeños trabajos de bricolaje <strong>no urgente</strong> en la vivienda asegurada, recogidos en un listado por oficios.</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num blue">2x</div>
+          <div class="step-content"><h3>Intervenciones por anualidad</h3><p>Cada cliente dispone de <strong>2 intervenciones por anualidad</strong>. Cada intervención puede ser de <strong>3 o 5 horas</strong> de mano de obra según la póliza.</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num blue">📍</div>
+          <div class="step-content"><h3>¿Qué cuenta como intervención?</h3><p>Cada desplazamiento a la vivienda asegurada, <strong>aunque no se llegue a realizar ningún trabajo</strong>.</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num blue">🕐</div>
+          <div class="step-content"><h3>Horario y lugar</h3><p>De <strong>lunes a viernes</strong>, no festivos, de <strong>9:00h a 19:00h</strong>, en un plazo máximo de <strong>48 horas</strong> desde la asignación. Exclusivamente en la <strong>vivienda asegurada</strong>.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card card-cobertura open" id="sc-bri-1">
+      <div class="sc-header" onclick="toggleCard('sc-bri-1')">
+        <span style="font-size:17px">✅</span><h2>¿Qué incluye el servicio?</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <ul class="item-list">
+          <li><span class="li-icon">✅</span><span>Instalación o sustitución de <strong>lámparas y apliques</strong> donde existan puntos de luz (incluye realización del taladro donde ya existe un punto de luz y ventiladores con luz).</span></li>
+          <li><span class="li-icon">✅</span><span>Sustitución de <strong>enchufes, interruptores de luz, bombillas y pulsadores de timbres</strong> por otros diferentes (sin cambios de ubicación).</span></li>
+          <li><span class="li-icon">✅</span><span>Instalación de <strong>canaletas para ocultar cables</strong> (sin trabajos de albañilería).</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-card card-exclusion" id="sc-bri-2">
+      <div class="sc-header" onclick="toggleCard('sc-bri-2')">
+        <span style="font-size:17px">🚫</span><h2>El servicio no incluye</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>Mano de obra que exceda del tiempo límite de la cobertura.</span></li>
+          <li><span class="li-icon">❌</span><span>Coste del material necesario (cualquier material que suministre el reparador se cobrará por asistencia).</span></li>
+          <li><span class="li-icon">❌</span><span>Montaje de elementos usados (no nuevos) en los que no se pueda comprobar el correcto funcionamiento.</span></li>
+          <li><span class="li-icon">❌</span><span>La instalación cuando la fijación de los elementos a la superficie <strong>no garantice su estabilidad</strong>.</span></li>
+          <li><span class="li-icon">❌</span><span>Instalar un <strong>ventilador sin luz</strong>.</span></li>
+          <li><span class="li-icon">❌</span><span>Crear un punto de luz nuevo o moverlo de su ubicación.</span></li>
+        </ul>
+        <div class="warn-box" style="margin-top:10px;"><span class="wi">⚠️</span><div>En pólizas <strong>Hogar TÚ ELIGES</strong> o <strong>VERTI</strong>, no incluye sustitución de <strong>tiras LED</strong>.</div></div>
+      </div>
+    </div>
+
+    <div class="red-notice">
+      <span style="font-size:19px;flex-shrink:0">🧰</span>
+      <div class="red-notice-text">Para exceso de horas, materiales o si el trabajo no está en la lista, <strong>ofrece Asistencia</strong>. Si el cliente la acepta, solicítalo desde <strong>Appcol por IPS</strong>. El servicio lo paga el cliente.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- BRICOMERCIO -->
+<div class="screen" id="screen-bricomercio">
+  <div class="page-content">
+    <div class="page-title-card" style="border-color:#1B7A45;border-left-color:#1B7A45;box-shadow:-4px 4px 0 rgba(27,122,69,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(27,122,69,0.25);border-left-color:#1B7A45;background:#F0FAF4;box-shadow:-3px 3px 0 rgba(27,122,69,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#1B7A45"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon"><span style="font-size:32px;line-height:1">🏪</span></div>
+      <div><h1 style="color:#1B7A45">Bricomercio</h1><p>Coberturas en locales comerciales</p></div>
+    </div>
+
+    <div class="section-card card-cobertura open" id="sc-bric-1">
+      <div class="sc-header" onclick="toggleCard('sc-bric-1')">
+        <span style="font-size:17px">✅</span><h2>¿Qué incluye el servicio?</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <ul class="item-list">
+          <li><span class="li-icon">✅</span><span>Sustitución de <strong>enchufes o interruptores de luz</strong> deteriorados sin cambio de ubicación.</span></li>
+          <li><span class="li-icon">✅</span><span>Puesta en marcha, conectividad y configuración de equipos de visión y/o sonido por hecho accidental: TDT, DVD, Cámara Digital, Home Cinema, Video Digital, Ordenadores, TV y Vídeo Consolas.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-card card-exclusion" id="sc-bric-2">
+      <div class="sc-header" onclick="toggleCard('sc-bric-2')">
+        <span style="font-size:17px">🚫</span><h2>El servicio no incluye</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>Asistencia que requiera trabajos de <strong>albañilería y/o pintura</strong>.</span></li>
+          <li><span class="li-icon">❌</span><span>Montaje de andamios o trabajos en altura a más de <strong>5 metros</strong>.</span></li>
+          <li><span class="li-icon">❌</span><span>Trabajos sujetos a <strong>permisos y/o licencias administrativas</strong>.</span></li>
+          <li><span class="li-icon">❌</span><span>Coste de materiales adquiridos por el asegurado sin aceptación expresa por la compañía.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-card card-info" id="sc-bric-3">
+      <div class="sc-header" onclick="toggleCard('sc-bric-3')">
+        <span style="font-size:17px">📋</span><h2>¿Cuándo y dónde se presta?</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <div class="step-card">
+          <div class="step-num blue">2x</div>
+          <div class="step-content"><h3>Intervenciones</h3><p>Máximo <strong>2 intervenciones por año y por local</strong>. Cuenta el desplazamiento aunque no se repare.</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num blue">⏱</div>
+          <div class="step-content"><h3>Horas y materiales</h3><p>Desplazamiento + <strong>2 primeras horas</strong> de mano de obra. Materiales hasta <strong>50€ por intervención</strong> (IVA incluido).</p></div>
+        </div>
+        <div class="step-card">
+          <div class="step-num blue">📍</div>
+          <div class="step-content"><h3>Lugar</h3><p>Exclusivamente en el <strong>local indicado en la póliza</strong>.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- BRICOLAJE ELÉCTRICO IBERDROLA -->
+<div class="screen" id="screen-iberdrola">
+  <div class="page-content">
+    <div class="page-title-card" style="border-color:#1B7A45;border-left-color:#1B7A45;box-shadow:-4px 4px 0 rgba(27,122,69,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(27,122,69,0.25);border-left-color:#1B7A45;background:#F0FAF4;box-shadow:-3px 3px 0 rgba(27,122,69,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#1B7A45"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon"><span style="font-size:32px;line-height:1">💡</span></div>
+      <div><h1 style="color:#1B7A45">Bricolaje Eléctrico Iberdrola</h1><p>Coberturas eléctricas para clientes Iberdrola</p></div>
+    </div>
+
+    <div class="green-box"><span class="wi">⏱️</span><span>Cubre desplazamiento y hasta <strong>3 horas de mano de obra</strong>.</span></div>
+
+    <div class="section-card card-cobertura open" id="sc-iber-1">
+      <div class="sc-header" onclick="toggleCard('sc-iber-1')">
+        <span style="font-size:17px">✅</span><h2>¿Qué incluye el servicio?</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <ul class="item-list">
+          <li><span class="li-icon">✅</span><span>Sustitución de <strong>mecanismos eléctricos</strong> (enchufes, interruptor y pulsadores).</span></li>
+          <li><span class="li-icon">✅</span><span>Conexiones y puesta en funcionamiento de: frigoríficos, congeladores, lavadoras, secadoras, lavavajillas, hornos, cocina eléctrica, y termo o calderas eléctricos. Incluye la conexión a la toma existente de agua y desagüe.</span></li>
+          <li><span class="li-icon">✅</span><span>Conexión y puesta en funcionamiento de: televisores, DVD, consolas y equipamientos home cinema.</span></li>
+          <li><span class="li-icon">✅</span><span>Instalación de <strong>temporizadores y termostato</strong>.</span></li>
+          <li><span class="li-icon">✅</span><span>Instalación o sustitución de <strong>lámparas o apliques</strong> donde exista punto de luz.</span></li>
+          <li><span class="li-icon">✅</span><span>Reparación de cableado (no sustitución de líneas), enchufes, interruptores, cuadro eléctrico, etc.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-card card-exclusion" id="sc-iber-2">
+      <div class="sc-header" onclick="toggleCard('sc-iber-2')">
+        <span style="font-size:17px">🚫</span><h2>No se incluye</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>El coste de los materiales empleados para la realización de los trabajos.</span></li>
+          <li><span class="li-icon">❌</span><span>Las horas de mano de obra que superen el límite de <strong>3 horas</strong>.</span></li>
+          <li><span class="li-icon">❌</span><span>Puntos de luz o instalaciones eléctricas nuevas, así como las rozas necesarias para su instalación.</span></li>
+          <li><span class="li-icon">❌</span><span>Tomas de agua y desagüe nuevas, así como las rozas necesarias para su instalación.</span></li>
+          <li><span class="li-icon">❌</span><span>Adecuación de las instalaciones eléctricas existentes a normativas o por necesidades técnicas.</span></li>
+          <li><span class="li-icon">❌</span><span>Instalación o reparación de <strong>software</strong> en equipos electrónicos e informáticos.</span></li>
+          <li><span class="li-icon">❌</span><span>Retirada de aparatos ni la gestión de residuos de ningún equipo.</span></li>
+          <li><span class="li-icon">❌</span><span>Revisiones o reparaciones de instalaciones eléctricas completas o equipos eléctricos o electrónicos averiados.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="red-notice">
+      <span style="font-size:19px;flex-shrink:0">🧰</span>
+      <div class="red-notice-text">Para exceso de horas, materiales o si el trabajo no está en la lista, <strong>ofrece Asistencia</strong>. Para abrirla es necesario llamar al teléfono de Atención al Cliente <strong>918 365 365</strong> en su presencia. El servicio lo paga el cliente.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ASISTENCIA URGENTE -->
+<div class="screen" id="screen-asistencia">
+  <div class="page-content">
+    <div class="page-title-card">
+      <button class="ptc-back" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div class="ptc-icon"><span style="font-size:32px;line-height:1">🚨</span></div>
+      <div><h1>Asistencia Urgente</h1><p>Cobertura de urgencias eléctricas</p></div>
+    </div>
+
+    <div class="warn-box">
+      <span class="wi">⚠️</span>
+      <div>Los servicios de asistencia <strong>siempre deben pagarlos el/la asegurado/a</strong>, a excepción del caso detallado a continuación.</div>
+    </div>
+
+    <div class="section-card card-red-sec open" id="sc-asi-1">
+      <div class="sc-header" onclick="toggleCard('sc-asi-1')">
+        <span style="font-size:17px">🚨</span><h2>¿Qué incluye el servicio?</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <div class="poliza-item red">
+          <h3>Ausencia total de suministro eléctrico</h3>
+          <p>Ausencia total de suministro de energía eléctrica en alguna de las fases de la instalación de la vivienda, siempre que el origen de la avería se sitúe <strong>en el interior de la misma</strong> o en alguna de sus dependencias.</p>
+        </div>
+        <div class="green-box"><span class="wi">⏱️</span><div>Se cubren los costes de <strong>desplazamiento y las primeras 3 horas de mano de obra</strong> para subsanar la urgencia.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- TODO RIESGO ACCIDENTAL -->
+<div class="screen" id="screen-todoriesgo">
+  <div class="page-content">
+    <div class="page-title-card" style="border-color:#607080;border-left-color:#607080;box-shadow:-4px 4px 0 rgba(96,112,128,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(96,112,128,0.25);border-left-color:#607080;background:#F4F6F8;box-shadow:-3px 3px 0 rgba(96,112,128,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#607080"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon"><span style="font-size:32px;line-height:1">🛡️</span></div>
+      <div><h1 style="color:#607080">Todo Riesgo Accidental</h1><p>Daños por causa accidental</p></div>
+    </div>
+
+    <div class="section-card card-cobertura open" id="sc-tra-1">
+      <div class="sc-header" onclick="toggleCard('sc-tra-1')">
+        <span style="font-size:17px">✅</span><h2>¿Qué incluye el servicio?</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <div class="green-box"><span class="wi">✅</span><div>Se cubren los daños originados a los bienes asegurados por <strong>cualquier causa accidental</strong>, es decir, un hecho fortuito e imprevisible.</div></div>
+        <div class="poliza-item info">
+          <h3>Franquicias</h3>
+          <p>Existen franquicias de <strong>60 €</strong> y de <strong>100 €</strong>. Si en el servicio indica que la franquicia es recuperable y la reparación supera los 100 €, se descuentan esos 100 € al asegurado.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card card-exclusion" id="sc-tra-2">
+      <div class="sc-header" onclick="toggleCard('sc-tra-2')">
+        <span style="font-size:17px">🚫</span><h2>No se cubre</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <ul class="item-list">
+          <li><span class="li-icon">❌</span><span>Cuando el coste de la reparación (IVA incluido) <strong>no supere la franquicia</strong> (en estos casos, ofrece asistencia).</span></li>
+          <li><span class="li-icon">❌</span><span>Hechos <strong>no accidentales</strong>.</span></li>
+          <li><span class="li-icon">❌</span><span>Daños superficiales como: arañazos, raspaduras, desconchados, salpicaduras, derrames de líquidos o rayados.</span></li>
+        </ul>
+        <div class="warn-box" style="margin-top:10px;"><span class="wi">⚠️</span><div>Los daños ocasionados por el <strong>uso inadecuado de productos o error humano</strong> no tienen consideración de hecho accidental y no tendrían cobertura.</div></div>
+      </div>
+    </div>
+
+    <div class="red-notice">
+      <span style="font-size:19px;flex-shrink:0">🧰</span>
+      <div class="red-notice-text">Si el expediente no tiene cobertura o solicitan alguna mejora, <strong>ofrece Asistencia</strong>. Si el cliente la acepta, solicítalo desde <strong>Appcol por IPS</strong>. El servicio lo paga el cliente.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- APLICACIÓN DE LA TARIFA -->
+<div class="screen" id="screen-tarifa">
+  <div class="page-content">
+    <div class="page-title-card" style="border-color:#F57F17;border-left-color:#F57F17;box-shadow:-4px 4px 0 rgba(245,127,23,0.14),0 1px 8px rgba(0,0,0,0.05);">
+      <button class="ptc-back" onclick="goBack()" style="border-color:rgba(245,127,23,0.25);border-left-color:#F57F17;background:#FFFCF0;box-shadow:-3px 3px 0 rgba(245,127,23,0.14);">
+        <svg viewBox="0 0 24 24" style="stroke:#F57F17"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="ptc-icon"><span style="font-size:32px;line-height:1">📝</span></div>
+      <div><h1 style="color:#F57F17">Aplicación de la Tarifa</h1><p>Guía para el uso de códigos</p></div>
+    </div>
+
+    <div class="section-card card-info open" id="sc-tar-1">
+      <div class="sc-header" onclick="toggleCard('sc-tar-1')">
+        <span style="font-size:17px">📝</span><h2>Códigos aplicables</h2><span class="chevron">▼</span>
+      </div>
+      <div class="sc-body">
+        <div class="poliza-item info">
+          <h3>Código Adicional — varios trabajos en una visita</h3>
+          <p>Si en una misma intervención haces varios trabajos distintos, a partir del <strong>segundo trabajo</strong> se utiliza el código <strong>Adicional</strong>.</p>
+        </div>
+        <div class="poliza-item info">
+          <h3>Código LAT — localización de avería</h3>
+          <p>El código <strong>LAT</strong> se aplica cuando hay que hacer comprobaciones para localizar una avería. Si el daño es evidente (elementos quemados o mojados), <strong>no se aplica LAT</strong> y se usan directamente los códigos del trabajo realizado.</p>
+        </div>
+        <div class="poliza-item info">
+          <h3>Código LVT — comprobación de elementos dañados</h3>
+          <p>Si el trabajo se realiza en una <strong>segunda visita</strong>, se utiliza el código <strong>LVT</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+const stack = [];
+let currentScreen = 'screen-home';
+
+function goTo(id) {
+  stack.push(currentScreen);
+  showScreen(id);
+}
+
+function goBack() {
+  if (!stack.length) return;
+  showScreen(stack.pop());
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  currentScreen = id;
+  window.scrollTo(0, 0);
+}
+
+function toggleCard(id) {
+  const card = document.getElementById(id);
+  if (card) card.classList.toggle('open');
+}
+
+showScreen('screen-home');
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('[SW] Registrado:', reg.scope))
+      .catch(err => console.warn('[SW] Error:', err));
+  });
+}
+</script>
+</body>
+</html>
